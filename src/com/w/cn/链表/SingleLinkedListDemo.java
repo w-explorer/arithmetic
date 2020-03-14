@@ -1,5 +1,7 @@
 package com.w.cn.链表;
 
+import java.util.Stack;
+
 /**
  * @author wencheng
  * @description
@@ -81,10 +83,29 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByNo(hero4);
         System.out.println("原始链表");
         singleLinkedList.showList();
-        reverse(singleLinkedList.getHead());
-        System.out.println("反转后链表");
-        singleLinkedList.showList();
+        reversePrint(singleLinkedList.getHead());
 
+    }
+
+    /**
+     * 百度面试题
+     * 倒叙打印单链表   不改变原来的 链表的结构
+     * @param heroNode
+     */
+    public static void reversePrint(HeroNode heroNode){
+        if(heroNode.next==null){
+            System.out.println("空链表，无法打印");
+            return;
+        }
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode temp = heroNode.next;
+        while (temp!=null){
+            stack.push(temp);
+            temp = temp.next;
+        }
+        while (stack.size()>0){
+            System.out.println(stack.pop());
+        }
     }
 
     /**
